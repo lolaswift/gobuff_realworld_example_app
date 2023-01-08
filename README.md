@@ -15,18 +15,25 @@ We've gone to great lengths to adhere to the **[Buffalo](http://gobuffalo.io)** 
 For more information on how to this works with other frontends/backends, head over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
 
 # Getting started
+## install buffalo
+powershell:
+ 	Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+ 	irm get.scoop.sh | iex
+ 	scoop install buffalo
+ Disable postsql service on Windows, otherwise got error "psql: FATAL: password authentication failed for user "postgres""
 
-## 1. Start the app
 
-	buffalo dev
-
-## 2. Start the database
+## 1. Start the database
 
 	docker run --name rw_db -e POSTGRES_DB=gobuff_realworld_example_app_development -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -p 5432:5432 -d postgres
 
-## 3. Update the database
+## 2. Update the database
 
 	buffalo pop migrate
+	(this command doesn't work for me so run "soda migrate up" instead)
+	
+## 3. Start the app
+	buffalo dev
 
 If you point your browser to [http://127.0.0.1:3000](http://127.0.0.1:3000) you should see the home page.
 
